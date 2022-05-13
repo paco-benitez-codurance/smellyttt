@@ -25,25 +25,19 @@ public class Game {
     }
 
     public char Winner() {
-        //if the positions in first row are taken
         if (isRowNotFree(0)) {
-            //if first row is full with same symbol
             if (sameSymbolInRow(0)) {
                 return _board.TileAt(0, 0).Symbol;
             }
         }
 
-        //if the positions in first row are taken
         if (isRowNotFree(1)) {
-            //if middle row is full with same symbol
             if (sameSymbolInRow(1)) {
                 return _board.TileAt(1, 0).Symbol;
             }
         }
 
-        //if the positions in first row are taken
         if (isRowNotFree(2)) {
-            //if middle row is full with same symbol
             if (sameSymbolInRow(2)) {
                 return _board.TileAt(2, 0).Symbol;
             }
