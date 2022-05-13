@@ -1,35 +1,29 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Board
-{
-    private List<Tile> _plays = new ArrayList<>();
+public class Board {
+  private final List<Tile> plays = new ArrayList<>();
 
-    public Board()
-    {
-        for (int i = 0; i < 3; i++)
-        {
-            for (int j = 0; j < 3; j++)
-            {
-                Tile tile = new Tile(i, j, ' ');
-                _plays.add(tile);
-            }
-        }
+  public Board() {
+    for (int i = 0; i < 3; i++) {
+      for (int j = 0; j < 3; j++) {
+        Tile tile = new Tile(i, j, ' ');
+        plays.add(tile);
+      }
     }
+  }
 
-    public Tile TileAt(int x, int y)
-    {
-        for (Tile t : _plays) {
-            if (t.iAmXY(x, y)){
-                return t;
-            }
-        }
-        return null;
+  public Tile tileAt(int x, int y) {
+    for (Tile t : plays) {
+      if (t.iAmXY(x, y)) {
+        return t;
+      }
     }
+    return null;
+  }
 
-    public void AddTileAt(char symbol, int x, int y)
-    {
-        _plays.remove(TileAt(x, y));
-        _plays.add(new Tile(x, y, symbol));
-    }
+  public void addTileAt(char symbol, int x, int y) {
+    plays.remove(tileAt(x, y));
+    plays.add(new Tile(x, y, symbol));
+  }
 }
