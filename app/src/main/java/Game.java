@@ -26,7 +26,7 @@ public class Game {
 
     public char Winner() {
         //if the positions in first row are taken
-        if (isRowFree(0)) {
+        if (isRowNotFree(0)) {
             //if first row is full with same symbol
             if (sameSymbolInRow(0)) {
                 return _board.TileAt(0, 0).Symbol;
@@ -34,7 +34,7 @@ public class Game {
         }
 
         //if the positions in first row are taken
-        if (isRowFree(1)) {
+        if (isRowNotFree(1)) {
             //if middle row is full with same symbol
             if (sameSymbolInRow(1)) {
                 return _board.TileAt(1, 0).Symbol;
@@ -42,7 +42,7 @@ public class Game {
         }
 
         //if the positions in first row are taken
-        if (isRowFree(2)) {
+        if (isRowNotFree(2)) {
             //if middle row is full with same symbol
             if (sameSymbolInRow(2)) {
                 return _board.TileAt(2, 0).Symbol;
@@ -57,7 +57,7 @@ public class Game {
           _board.TileAt(x, 2).Symbol == _board.TileAt(x, 1).Symbol;
     }
 
-    private boolean isRowFree(int x) {
+    private boolean isRowNotFree(int x) {
         return _board.TileAt(x, 0).Symbol != ' ' &&
           _board.TileAt(x, 1).Symbol != ' ' &&
           _board.TileAt(x, 2).Symbol != ' ';
