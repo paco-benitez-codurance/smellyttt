@@ -43,8 +43,8 @@ public class Game {
     }
 
     private boolean sameSymbolInRow(int row) {
-        return _board.TileAt(row, 0).symbol() == _board.TileAt(row, 1).symbol() &&
-          _board.TileAt(row, 2).symbol() == _board.TileAt(row, 1).symbol();
+        return _board.TileAt(row, 0).sameSymbol(_board.TileAt(row, 1)) &&
+          _board.TileAt(row, 2).sameSymbol(_board.TileAt(row, 1));
     }
 
     private boolean isRowNotFree(int row) {

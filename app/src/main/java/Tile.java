@@ -3,7 +3,7 @@ class Tile
 {
     private final int X;
     private final int Y;
-    private char symbol;
+    private final char symbol;
 
     Tile(int x, int y, char symbol) {
         X = x;
@@ -23,7 +23,7 @@ class Tile
         return this.symbol;
     }
 
-    public void setSymbol(char symbol) {
-        this.symbol = symbol;
+    public boolean sameSymbol(Tile tile) {
+        return this.symbol == tile.symbol();
     }
 }

@@ -29,6 +29,7 @@ public class Board
 
     public void AddTileAt(char symbol, int x, int y)
     {
-        TileAt(x,y).setSymbol(symbol);
+        _plays.remove(TileAt(x, y));
+        _plays.add(new Tile(x, y, symbol));
     }
 }
