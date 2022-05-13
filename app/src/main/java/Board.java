@@ -5,21 +5,29 @@ public class Board {
   private final List<Tile> plays = new ArrayList<>();
 
   public Board() {
+    fillBoardWithEmptyTiles();
+  }
+
+  private void fillBoardWithEmptyTiles() {
     for (int i = 0; i < 3; i++) {
-      for (int j = 0; j < 3; j++) {
-        Tile tile = Tile.emptyTitle(i, j);
-        plays.add(tile);
-      }
+      addEmptyRow(i);
+    }
+  }
+
+  private void addEmptyRow(int row) {
+    for (int j = 0; j < 3; j++) {
+      Tile tile = Tile.emptyTitle(row, j);
+      plays.add(tile);
     }
   }
 
   public Tile tileAt(int x, int y) {
-    for (Tile t : plays) {
-      if (t.iAmXY(x, y)) {
-        return t;
-      }
-    }
-    return null;
+    return
+      plays
+        .stream()
+        .filter(tile -> tile.iAmXY(x, y))
+        .findFirst()
+        .orElse(null);
   }
 
   public void addTileAt(Symbol symbol, int x, int y) {
