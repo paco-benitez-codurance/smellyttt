@@ -20,7 +20,7 @@ public class Board
     public Tile TileAt(int x, int y)
     {
         for (Tile t : _plays) {
-            if (t.X == x && t.Y == y){
+            if (t.iAmXY(x, y)){
                 return t;
             }
         }
