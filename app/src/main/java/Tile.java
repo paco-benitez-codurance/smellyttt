@@ -1,17 +1,17 @@
-import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
-record Tile(int x, int y, Symbol symbol) {
+record Tile(Coordinate coordinate, Symbol symbol) {
 
-  public static Tile emptyTitle(int x, int y) {
-    return new Tile(x, y, Symbol.emptySymbol());
+  public static Tile emptyTitle(Coordinate coordinate) {
+    return new Tile(coordinate, Symbol.emptySymbol());
   }
 
   public Tile copy(Symbol symbol) {
-    return new Tile(x, y, symbol);
+    return new Tile(coordinate, symbol);
   }
 
-  public boolean iAmXY(int x, int y) {
-    return this.x == x && this.y == y;
+  public boolean iAmXY(Coordinate coordinate) {
+    return this.coordinate.equals(coordinate);
   }
 
   public boolean isNotEmpty() {
@@ -22,14 +22,19 @@ record Tile(int x, int y, Symbol symbol) {
     return this.symbol == tile.symbol();
   }
 
-  public static void giveMeAllCoordinates(BiConsumer<Integer, Integer> coordinateConsumer) {
+  public static void giveMeAllCoordinates(Consumer<Coordinate> coordinateConsumer) {
     for (int i = 0; i < 3; i++) {
       for (int j = 0; j < 3; j++) {
-        coordinateConsumer.accept(i, j);
+        coordinateConsumer.accept(new Coordinate(i, j));
       }
     }
   }
+}
 
+record Coordinate(int x, int y) {
+  static Coordinate coord(int x, int y) {
+    return new Coordinate(x, y);
+  }
 }
 
 enum Symbol {

@@ -10,21 +10,21 @@ public class Board {
 
   private void fillBoardWithEmptyTiles() {
     Tile.giveMeAllCoordinates(
-      (x, y) -> plays.add(Tile.emptyTitle(x, y))
+      (coordinate) -> plays.add(Tile.emptyTitle(coordinate))
     );
   }
 
-  public Tile tileAt(int x, int y) {
+  public Tile tileAt(Coordinate coordinate) {
     return
       plays
         .stream()
-        .filter(tile -> tile.iAmXY(x, y))
+        .filter(tile -> tile.iAmXY(coordinate))
         .findFirst()
         .orElse(null);
   }
 
-  public void addTileAt(Symbol symbol, int x, int y) {
-    Tile tile = tileAt(x, y);
+  public void addTileAt(Symbol symbol, Coordinate coordinate) {
+    Tile tile = tileAt(coordinate);
     plays.remove(tile);
     plays.add(tile.copy(symbol));
   }
