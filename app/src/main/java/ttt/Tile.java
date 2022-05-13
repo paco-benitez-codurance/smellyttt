@@ -1,9 +1,14 @@
+package ttt;
+
 import java.util.function.Consumer;
+
+import static ttt.Coordinate.coord;
+import static ttt.Symbol.emptySymbol;
 
 record Tile(Coordinate coordinate, Symbol symbol) {
 
   public static Tile emptyTitle(Coordinate coordinate) {
-    return new Tile(coordinate, Symbol.emptySymbol());
+    return new Tile(coordinate, emptySymbol());
   }
 
   public Tile copy(Symbol symbol) {
@@ -25,7 +30,7 @@ record Tile(Coordinate coordinate, Symbol symbol) {
   public static void giveMeAllCoordinates(Consumer<Coordinate> coordinateConsumer) {
     for (int i = 0; i < 3; i++) {
       for (int j = 0; j < 3; j++) {
-        coordinateConsumer.accept(new Coordinate(i, j));
+        coordinateConsumer.accept(coord(i, j));
       }
     }
   }
