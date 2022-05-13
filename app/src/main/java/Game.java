@@ -15,7 +15,7 @@ public class Game {
             throw new Exception("Invalid next player");
         }
         //if not first move but play on an already played tile
-        else if (_board.TileAt(x, y).Symbol != ' ') {
+        else if (_board.TileAt(x, y).isNotEmpty()) {
             throw new Exception("Invalid position");
         }
 
@@ -26,13 +26,13 @@ public class Game {
 
     public char Winner() {
         if (sameSymbolNotFreeInRow(0)) {
-            return _board.TileAt(0, 0).Symbol;
+            return _board.TileAt(0, 0).symbol();
         }
         if (sameSymbolNotFreeInRow(1)) {
-            return _board.TileAt(1, 0).Symbol;
+            return _board.TileAt(1, 0).symbol();
         }
         if (sameSymbolNotFreeInRow(2)) {
-            return _board.TileAt(2, 0).Symbol;
+            return _board.TileAt(2, 0).symbol();
         }
 
         return ' ';
@@ -43,14 +43,14 @@ public class Game {
     }
 
     private boolean sameSymbolInRow(int row) {
-        return _board.TileAt(row, 0).Symbol == _board.TileAt(row, 1).Symbol &&
-          _board.TileAt(row, 2).Symbol == _board.TileAt(row, 1).Symbol;
+        return _board.TileAt(row, 0).symbol() == _board.TileAt(row, 1).symbol() &&
+          _board.TileAt(row, 2).symbol() == _board.TileAt(row, 1).symbol();
     }
 
     private boolean isRowNotFree(int row) {
-        return _board.TileAt(row, 0).Symbol != ' ' &&
-          _board.TileAt(row, 1).Symbol != ' ' &&
-          _board.TileAt(row, 2).Symbol != ' ';
+        return _board.TileAt(row, 0).isNotEmpty() &&
+          _board.TileAt(row, 1).isNotEmpty() &&
+          _board.TileAt(row, 2).isNotEmpty();
     }
 }
 

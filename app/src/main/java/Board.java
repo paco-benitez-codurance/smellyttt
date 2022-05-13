@@ -29,6 +29,6 @@ public class Board
 
     public void AddTileAt(char symbol, int x, int y)
     {
-        TileAt(x,y).Symbol = symbol;
+        TileAt(x,y).setSymbol(symbol);
     }
 }
