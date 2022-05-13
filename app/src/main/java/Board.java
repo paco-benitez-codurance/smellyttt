@@ -7,7 +7,7 @@ public class Board {
   public Board() {
     for (int i = 0; i < 3; i++) {
       for (int j = 0; j < 3; j++) {
-        Tile tile = new Tile(i, j, ' ');
+        Tile tile = new Tile(i, j, Tile.emptySymbol());
         plays.add(tile);
       }
     }

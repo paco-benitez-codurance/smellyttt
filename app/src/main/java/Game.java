@@ -1,12 +1,12 @@
 public class Game {
-  private char lastSymbol = ' ';
+  private char lastSymbol = Tile.emptySymbol();
   private final Board board = new Board();
 
   public void play(char symbol, int x, int y) throws Exception {
     //if first move
-    if (lastSymbol == ' ') {
+    if (lastSymbol == Tile.emptySymbol()) {
       //if player is X
-      if (symbol == 'O') {
+      if (symbol == Tile.O()) {
         throw new Exception("Invalid first player");
       }
     }
@@ -35,7 +35,7 @@ public class Game {
       return board.tileAt(2, 0).symbol();
     }
 
-    return ' ';
+    return Tile.emptySymbol();
   }
 
   private boolean sameSymbolNotFreeInRow(int row) {

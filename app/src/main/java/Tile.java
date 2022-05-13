@@ -12,4 +12,14 @@ record Tile(int x, int y, char symbol) {
   public boolean sameSymbol(Tile tile) {
     return this.symbol == tile.symbol();
   }
+
+  public static char emptySymbol() {
+    return ' ';
+  }
+  public static char X() {
+    return 'X';
+  }
+  public static char O() {
+    return 'O';
+  }
 }
