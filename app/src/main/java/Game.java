@@ -25,36 +25,32 @@ public class Game {
     }
 
     public char Winner() {
-        if (isRowNotFree(0)) {
-            if (sameSymbolInRow(0)) {
-                return _board.TileAt(0, 0).Symbol;
-            }
+        if (sameSymbolNotFreeInRow(0)) {
+            return _board.TileAt(0, 0).Symbol;
         }
-
-        if (isRowNotFree(1)) {
-            if (sameSymbolInRow(1)) {
-                return _board.TileAt(1, 0).Symbol;
-            }
+        if (sameSymbolNotFreeInRow(1)) {
+            return _board.TileAt(1, 0).Symbol;
         }
-
-        if (isRowNotFree(2)) {
-            if (sameSymbolInRow(2)) {
-                return _board.TileAt(2, 0).Symbol;
-            }
+        if (sameSymbolNotFreeInRow(2)) {
+            return _board.TileAt(2, 0).Symbol;
         }
 
         return ' ';
     }
 
-    private boolean sameSymbolInRow(int x) {
-        return _board.TileAt(x, 0).Symbol == _board.TileAt(x, 1).Symbol &&
-          _board.TileAt(x, 2).Symbol == _board.TileAt(x, 1).Symbol;
+    private boolean sameSymbolNotFreeInRow(int row) {
+       return isRowNotFree(row) && sameSymbolInRow(row);
     }
 
-    private boolean isRowNotFree(int x) {
-        return _board.TileAt(x, 0).Symbol != ' ' &&
-          _board.TileAt(x, 1).Symbol != ' ' &&
-          _board.TileAt(x, 2).Symbol != ' ';
+    private boolean sameSymbolInRow(int row) {
+        return _board.TileAt(row, 0).Symbol == _board.TileAt(row, 1).Symbol &&
+          _board.TileAt(row, 2).Symbol == _board.TileAt(row, 1).Symbol;
+    }
+
+    private boolean isRowNotFree(int row) {
+        return _board.TileAt(row, 0).Symbol != ' ' &&
+          _board.TileAt(row, 1).Symbol != ' ' &&
+          _board.TileAt(row, 2).Symbol != ' ';
     }
 }
 

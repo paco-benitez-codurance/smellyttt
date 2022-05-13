@@ -44,7 +44,7 @@ Some of them
 
 ### Dispensables
 - [ ] Comments
-- [ ] Duplicate Code - WIP
+- [ ] Duplicate Code
 - [ ] Data Class
 - [ ] Dead Code
 - [ ] Lazy Class
