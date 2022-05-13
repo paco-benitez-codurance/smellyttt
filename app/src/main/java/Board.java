@@ -9,16 +9,9 @@ public class Board {
   }
 
   private void fillBoardWithEmptyTiles() {
-    for (int i = 0; i < 3; i++) {
-      addEmptyRow(i);
-    }
-  }
-
-  private void addEmptyRow(int row) {
-    for (int j = 0; j < 3; j++) {
-      Tile tile = Tile.emptyTitle(row, j);
-      plays.add(tile);
-    }
+    Tile.giveMeAllCoordinates(
+      (x, y) -> plays.add(Tile.emptyTitle(x, y))
+    );
   }
 
   public Tile tileAt(int x, int y) {

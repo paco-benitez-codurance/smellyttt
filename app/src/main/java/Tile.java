@@ -1,3 +1,4 @@
+import java.util.function.BiConsumer;
 
 record Tile(int x, int y, Symbol symbol) {
 
@@ -21,6 +22,14 @@ record Tile(int x, int y, Symbol symbol) {
     return this.symbol == tile.symbol();
   }
 
+  public static void giveMeAllCoordinates(BiConsumer<Integer, Integer> coordinateConsumer) {
+    for (int i = 0; i < 3; i++) {
+      for (int j = 0; j < 3; j++) {
+        coordinateConsumer.accept(i, j);
+      }
+    }
+  }
+
 }
 
 enum Symbol {
@@ -29,6 +38,7 @@ enum Symbol {
   public boolean isNotEmpty() {
     return this != EMPTY;
   }
+
   public static Symbol emptySymbol() {
     return EMPTY;
   }
