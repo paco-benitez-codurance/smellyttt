@@ -1,25 +1,35 @@
 
-record Tile(int x, int y, char symbol) {
+record Tile(int x, int y, Symbol symbol) {
 
   public boolean iAmXY(int x, int y) {
     return this.x == x && this.y == y;
   }
 
   public boolean isNotEmpty() {
-    return symbol != ' ';
+    return symbol.isNotEmpty();
   }
 
   public boolean sameSymbol(Tile tile) {
     return this.symbol == tile.symbol();
   }
 
-  public static char emptySymbol() {
-    return ' ';
+}
+
+enum Symbol {
+  EMPTY, X, O;
+
+  public boolean isNotEmpty() {
+    return this != EMPTY;
   }
-  public static char X() {
-    return 'X';
+  public static Symbol emptySymbol() {
+    return EMPTY;
   }
-  public static char O() {
-    return 'O';
+
+  public static Symbol X() {
+    return X;
+  }
+
+  public static Symbol O() {
+    return O;
   }
 }

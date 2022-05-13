@@ -1,30 +1,23 @@
 public class Game {
-  private char lastSymbol = Tile.emptySymbol();
+  private Symbol lastSymbol = Symbol.emptySymbol();
   private final Board board = new Board();
 
-  public void play(char symbol, int x, int y) throws Exception {
-    //if first move
-    if (lastSymbol == Tile.emptySymbol()) {
-      //if player is X
-      if (symbol == Tile.O()) {
+  public void play(Symbol symbol, int x, int y) throws Exception {
+    if (lastSymbol == Symbol.emptySymbol()) {
+      if (symbol == Symbol.O()) {
         throw new Exception("Invalid first player");
       }
-    }
-    //if not first move but player repeated
-    else if (symbol == lastSymbol) {
+    } else if (symbol == lastSymbol) {
       throw new Exception("Invalid next player");
-    }
-    //if not first move but play on an already played tile
-    else if (board.tileAt(x, y).isNotEmpty()) {
+    } else if (board.tileAt(x, y).isNotEmpty()) {
       throw new Exception("Invalid position");
     }
 
-    // update game state
     lastSymbol = symbol;
     board.addTileAt(symbol, x, y);
   }
 
-  public char winner() {
+  public Symbol winner() {
     if (sameSymbolNotFreeInRow(0)) {
       return board.tileAt(0, 0).symbol();
     }
@@ -35,7 +28,7 @@ public class Game {
       return board.tileAt(2, 0).symbol();
     }
 
-    return Tile.emptySymbol();
+    return Symbol.emptySymbol();
   }
 
   private boolean sameSymbolNotFreeInRow(int row) {
