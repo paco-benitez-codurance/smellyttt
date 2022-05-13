@@ -7,7 +7,7 @@ public class Board {
   public Board() {
     for (int i = 0; i < 3; i++) {
       for (int j = 0; j < 3; j++) {
-        Tile tile = new Tile(i, j, Symbol.emptySymbol());
+        Tile tile = Tile.emptyTitle(i, j);
         plays.add(tile);
       }
     }
@@ -23,7 +23,8 @@ public class Board {
   }
 
   public void addTileAt(Symbol symbol, int x, int y) {
-    plays.remove(tileAt(x, y));
-    plays.add(new Tile(x, y, symbol));
+    Tile tile = tileAt(x, y);
+    plays.remove(tile);
+    plays.add(tile.copy(symbol));
   }
 }
