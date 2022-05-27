@@ -3,7 +3,7 @@ package ttt.model;
 public enum Symbol {
   EMPTY, X, O;
 
-  public boolean isEmpty() {
+  boolean isEmpty() {
     return this == EMPTY;
   }
 
