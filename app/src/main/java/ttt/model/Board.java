@@ -51,18 +51,20 @@ public class Board {
         .orElseThrow();
   }
 
-  private boolean isRowWithTiles(int row) {
+  private boolean isRowFullyOccupied(int row) {
     return !tileAt(coord(row, 0)).isEmpty() &&
       !tileAt(coord(row, 1)).isEmpty() &&
       !tileAt(coord(row, 2)).isEmpty();
   }
 
   private boolean sameSymbolInRow(int row) {
-    return tileAt(coord(row, 0)).sameSymbol(tileAt(coord(row, 1))) &&
-      tileAt(coord(row, 2)).sameSymbol(tileAt(coord(row, 1)));
+    Tile firstElementInRow = tileAt(coord(row, 1));
+
+    return tileAt(coord(row, 0)).sameSymbol(firstElementInRow) &&
+      tileAt(coord(row, 2)).sameSymbol(firstElementInRow);
   }
 
   private boolean sameSymbolNotFreeInRow(int row) {
-    return isRowWithTiles(row) && sameSymbolInRow(row);
+    return isRowFullyOccupied(row) && sameSymbolInRow(row);
   }
 }
