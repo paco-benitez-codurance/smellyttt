@@ -16,8 +16,8 @@ public record Tile(Coordinate coordinate, Symbol symbol) {
     return this.coordinate.equals(coordinate);
   }
 
-  public boolean isNotEmpty() {
-    return symbol.isNotEmpty();
+  public boolean isEmpty() {
+    return symbol.isEmpty();
   }
 
   public boolean sameSymbol(Tile tile) {

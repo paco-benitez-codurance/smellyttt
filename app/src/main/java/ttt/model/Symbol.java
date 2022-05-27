@@ -3,8 +3,8 @@ package ttt.model;
 public enum Symbol {
   EMPTY, X, O;
 
-  public boolean isNotEmpty() {
-    return this != EMPTY;
+  public boolean isEmpty() {
+    return this == EMPTY;
   }
 
   public static Symbol emptySymbol() {

@@ -20,7 +20,7 @@ public class Board {
   }
 
   public boolean isEmpty(Coordinate coordinate) {
-    return !tileAt(coordinate).isNotEmpty();
+    return tileAt(coordinate).isEmpty();
   }
 
   public Symbol winner() {
@@ -51,10 +51,10 @@ public class Board {
         .orElse(null);
   }
 
-  private boolean isRowNotFree(int row) {
-    return tileAt(coord(row, 0)).isNotEmpty() &&
-      tileAt(coord(row, 1)).isNotEmpty() &&
-      tileAt(coord(row, 2)).isNotEmpty();
+  private boolean isRowWithTiles(int row) {
+    return !tileAt(coord(row, 0)).isEmpty() &&
+      !tileAt(coord(row, 1)).isEmpty() &&
+      !tileAt(coord(row, 2)).isEmpty();
   }
 
   private boolean sameSymbolInRow(int row) {
@@ -63,6 +63,6 @@ public class Board {
   }
 
   private boolean sameSymbolNotFreeInRow(int row) {
-    return isRowNotFree(row) && sameSymbolInRow(row);
+    return isRowWithTiles(row) && sameSymbolInRow(row);
   }
 }
