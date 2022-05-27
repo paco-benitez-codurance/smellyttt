@@ -2,6 +2,8 @@ package ttt;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import ttt.exceptions.InvalidPlayerError;
+import ttt.exceptions.InvalidPositionError;
 import ttt.model.Symbol;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -19,30 +21,30 @@ class Game_Should {
 
     @Test
     void NotAllowPlayerOToPlayFirst() {
-        assertThrows(Exception.class, () -> game.play(Symbol.o(), coord(0, 0)));
+        assertThrows(InvalidPlayerError.class, () -> game.play(Symbol.o(), coord(0, 0)));
     }
 
     @Test
     void NotAllowPlayerXToPlayTwiceInARow() {
-        assertThrows(Exception.class, () ->{
-            game.play(Symbol.x(), coord(0, 0));
-            game.play(Symbol.x(), coord(1, 0));
-        });
+        game.play(Symbol.x(), coord(0, 0));
+        assertThrows(InvalidPlayerError.class, () ->
+            game.play(Symbol.x(), coord(1, 0))
+        );
     }
 
     @Test
     void NotAllowPlayerToPlayInLastPlayedPosition() {
-        assertThrows(Exception.class, () ->{
-            game.play(Symbol.x(), coord(0, 0));
+        game.play(Symbol.x(), coord(0, 0));
+        assertThrows(InvalidPositionError.class, () ->{
             game.play(Symbol.o(), coord(0, 0));
         });
     }
 
     @Test
     void NotAllowPlayerToPlayInAnyPlayedPosition() {
-        assertThrows(Exception.class, () ->{
-            game.play(Symbol.x(), coord(0, 0));
-            game.play(Symbol.o(), coord(1, 0));
+        game.play(Symbol.x(), coord(0, 0));
+        game.play(Symbol.o(), coord(1, 0));
+        assertThrows(InvalidPositionError.class, () ->{
             game.play(Symbol.x(), coord(0, 0));
         });
     }

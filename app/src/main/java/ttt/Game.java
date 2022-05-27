@@ -1,5 +1,7 @@
 package ttt;
 
+import ttt.exceptions.InvalidPlayerError;
+import ttt.exceptions.InvalidPositionError;
 import ttt.model.Board;
 import ttt.model.Coordinate;
 import ttt.model.Symbol;
@@ -11,15 +13,15 @@ public class Game {
   private Symbol lastSymbol = emptySymbol();
   private final Board board = new Board();
 
-  public void play(Symbol symbol, Coordinate coordinate) throws Exception {
+  public void play(Symbol symbol, Coordinate coordinate) {
     if (lastSymbol == emptySymbol()) {
       if (symbol == Symbol.o()) {
-        throw new Exception("Invalid first player");
+        throw new InvalidPlayerError("Invalid first player");
       }
     } else if (symbol == lastSymbol) {
-      throw new Exception("Invalid next player");
+      throw new InvalidPlayerError("Invalid next player");
     } else if (board.tileAt(coordinate).isNotEmpty()) {
-      throw new Exception("Invalid position");
+      throw new InvalidPositionError("Invalid position");
     }
 
     lastSymbol = symbol;
