@@ -48,7 +48,7 @@ public class Board {
         .stream()
         .filter(tile -> tile.iAmXY(coordinate))
         .findFirst()
-        .orElse(null);
+        .orElseThrow();
   }
 
   private boolean isRowWithTiles(int row) {
