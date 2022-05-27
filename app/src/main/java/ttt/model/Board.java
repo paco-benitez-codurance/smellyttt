@@ -3,11 +3,37 @@ package ttt.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import static ttt.model.Coordinate.coord;
+import static ttt.model.Symbol.emptySymbol;
+
 public class Board {
   private final List<Tile> plays = new ArrayList<>();
 
   public Board() {
     fillBoardWithEmptyTiles();
+  }
+
+  public void addTileAt(Symbol symbol, Coordinate coordinate) {
+    Tile tile = tileAt(coordinate);
+    plays.remove(tile);
+    plays.add(tile.copy(symbol));
+  }
+
+  public boolean isEmpty(Coordinate coordinate) {
+    return !tileAt(coordinate).isNotEmpty();
+  }
+
+  public Symbol winner() {
+    if (sameSymbolNotFreeInRow(0)) {
+      return tileAt(coord(0, 0)).symbol();
+    }
+    if (sameSymbolNotFreeInRow(1)) {
+      return tileAt(coord(1, 0)).symbol();
+    }
+    if (sameSymbolNotFreeInRow(2)) {
+      return tileAt(coord(2, 0)).symbol();
+    }
+    return emptySymbol();
   }
 
   private void fillBoardWithEmptyTiles() {
@@ -16,7 +42,7 @@ public class Board {
     );
   }
 
-  public Tile tileAt(Coordinate coordinate) {
+  private Tile tileAt(Coordinate coordinate) {
     return
       plays
         .stream()
@@ -25,9 +51,18 @@ public class Board {
         .orElse(null);
   }
 
-  public void addTileAt(Symbol symbol, Coordinate coordinate) {
-    Tile tile = tileAt(coordinate);
-    plays.remove(tile);
-    plays.add(tile.copy(symbol));
+  private boolean isRowNotFree(int row) {
+    return tileAt(coord(row, 0)).isNotEmpty() &&
+      tileAt(coord(row, 1)).isNotEmpty() &&
+      tileAt(coord(row, 2)).isNotEmpty();
+  }
+
+  private boolean sameSymbolInRow(int row) {
+    return tileAt(coord(row, 0)).sameSymbol(tileAt(coord(row, 1))) &&
+      tileAt(coord(row, 2)).sameSymbol(tileAt(coord(row, 1)));
+  }
+
+  private boolean sameSymbolNotFreeInRow(int row) {
+    return isRowNotFree(row) && sameSymbolInRow(row);
   }
 }
