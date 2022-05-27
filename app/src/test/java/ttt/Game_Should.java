@@ -16,7 +16,7 @@ class Game_Should {
 
     @BeforeEach
     void InitializeGame(){
-        game = new Game();
+        game = new GameImpl();
     }
 
     @Test
