@@ -1,8 +1,11 @@
 package ttt;
 
-import static ttt.Coordinate.coord;
-import static ttt.Symbol.O;
-import static ttt.Symbol.emptySymbol;
+import ttt.model.Board;
+import ttt.model.Coordinate;
+import ttt.model.Symbol;
+
+import static ttt.model.Coordinate.coord;
+import static ttt.model.Symbol.emptySymbol;
 
 public class Game {
   private Symbol lastSymbol = emptySymbol();
@@ -10,7 +13,7 @@ public class Game {
 
   public void play(Symbol symbol, Coordinate coordinate) throws Exception {
     if (lastSymbol == emptySymbol()) {
-      if (symbol == O()) {
+      if (symbol == Symbol.o()) {
         throw new Exception("Invalid first player");
       }
     } else if (symbol == lastSymbol) {

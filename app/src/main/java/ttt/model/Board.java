@@ -1,4 +1,4 @@
-package ttt;
+package ttt.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,8 +11,8 @@ public class Board {
   }
 
   private void fillBoardWithEmptyTiles() {
-    Tile.giveMeAllCoordinates(
-      (coordinate) -> plays.add(Tile.emptyTitle(coordinate))
+    Coordinate.giveMeAllCoordinates(
+      coordinate -> plays.add(Tile.emptyTitle(coordinate))
     );
   }
 
